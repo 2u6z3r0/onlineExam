@@ -54,7 +54,7 @@ ROOT_URLCONF = 'onlineExam.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'onlineExam.wsgi.application'
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database
