@@ -9,6 +9,9 @@ class Exam(models.Model):
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
+    def __str__(self):
+        return self.exam_name
+
 
 class Question(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
@@ -19,16 +22,25 @@ class Question(models.Model):
     option4 = models.CharField(max_length=200)
     correct_option = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.question_text[:15]
+
 class StudentExam(models.Model):
     exam = models.ManyToManyField(Exam)
     student = models.ManyToManyField(User)
     completed = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.exam
+
 class StudentExamQA(models.Model):
-    student_exam = models.ManyToManyField(StudentExam)
-    question = models.ManyToManyField(Question)
-    answer = models.CharField(max_length=200)
+    exam = models.ManyToManyField(Exam)
+    student = models.ManyToManyField(User)
+    student_answer = models.CharField(max_length=200)
     is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.exam
 
 class Result(models.Model):
     exam = models.ManyToManyField(Exam)
