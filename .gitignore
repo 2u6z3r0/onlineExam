@@ -6,7 +6,11 @@
 # Icon must end with two \r
 Icon
 
+<<<<<<< HEAD
 #VS Code 
+=======
+#vscode
+>>>>>>> e0667a9e01260331e8d6720c6db4194a0d0029a4
 .vscode
 
 # Thumbnails
