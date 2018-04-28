@@ -5,4 +5,4 @@ from django.http import HttpResponse
 # Create your views here.
 @login_required
 def home_page(request):
-    return HttpResponse("<h1> Home Page </h1>")
+    return render(request, "index.html")

@@ -103,6 +103,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+#static content
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(BASE_DIR), 'static_cdn'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
