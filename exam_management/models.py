@@ -4,14 +4,18 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Exam(models.Model):
-    exam_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
     total_marks = models.IntegerField()
+    duration = models.IntegerField(default=60)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
         return self.exam_name
 
+    def get_absolute_url(self):
+        return 'exam/%d' % self.id
 
 class Question(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
@@ -30,8 +34,6 @@ class StudentExam(models.Model):
     student = models.ManyToManyField(User)
     completed = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.exam
 
 class StudentExamQA(models.Model):
     exam = models.ManyToManyField(Exam)
