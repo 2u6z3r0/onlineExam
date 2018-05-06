@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles%} 
+{% block script %}
+<script src="{% static 'js/validate.js' %}"></script>
+<script type="text/javascript">
+        
+</script>
+{% endblock script %}
 
 {% block login %}
     <form class="form-inline">
@@ -11,15 +18,48 @@
 
 {% block content %}
 
-<div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+<div class="container"  id='data-js' data-js-vars="{{ exam_id }}">
+        <div class="row" id="question-display" style="display:none" >
+            <div class="panel panel-default col-sm-8 col-sm-offset-2 ">
                 <br>
-                <h2>Welcome to online exam portal.</h2>
-                {% for question in question_list %}
-                    <h1>{{ question.question_text }} </h1>
-                {% endfor %}
+                <div class="panel-heading h2 question-place" style="margin-top:10px">
+
+                </div>
+                <br>
+                <div class="panel-body">
+                        <!--Radio group-->
+                        <div class="form-check">
+                            <input class="select-option form-check-input" name="group100" type="radio" id="radio100">
+                            <label class="form-check-label " for="radio100"><span class="col-sm-offset-2 option option1-place"></span></label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input class="select-option form-check-input" name="group100" type="radio" id="radio101">
+                            <label class="form-check-label"  for="radio101"><span class="col-sm-offset-2 option option2-place"></span></label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input class="select-option form-check-input"  name="group100" type="radio" id="radio102">
+                            <label class="form-check-label"  for="radio102"><span class="col-sm-offset-2 option option3-place"></span></label>
+                        </div>
+
+                        <div class="form-check">
+                                <input class="select-option form-check-input" name="group100" type="radio" id="radio103">
+                                <label class="form-check-label" for="radio103"><span class="col-sm-offset-2 option option4-place"></span></label>
+                        </div>
+                        <!--Radio group-->
+                    
+                        <input type="hidden" id="option-answer" value="" />
+                    <br>
+                    <button class="btn btn-primary" role="button" id="after"><span class="before">Skip</span><span class="after">Next</span></span></button>
+                </div>
+            </div>
+        </div>
+        <div style="display:none" class="jumbotron text-center" id="score">
+                <p>Your Score is <span id="count"></span> out of <span id="total"></span></p>
+                <button class="btn btn-default exit-btn">exit</button>
         </div>
     </div>
 
 {% endblock %}
+

@@ -5,14 +5,14 @@ from django.contrib.auth.models import User
 
 class Exam(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, blank=True)
     total_marks = models.IntegerField()
     duration = models.IntegerField(default=60)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-        return self.exam_name
+        return self.name
 
     def get_absolute_url(self):
         return 'exam/%d' % self.id

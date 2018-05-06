@@ -12,14 +12,20 @@
 {% block content %}
 
 <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                <br>
-                <h2>Welcome to online exam portal.</h2>
-                {% for exam in exam_list %}
-                    <h2><a href="{{ exam.get_absolute_url }}">{{ exam.name }}</a> 
-                {% endfor %}
+    {% for exam in exam_list %}
+        <div class="row" style="margin-top:10px" >
+            <div class="col-sm-12" >
+                <div class="thumbnail" >
+                    <div class="caption" >
+                        <h2><a href="{{ obj.get_absolute_url }}">{{ exam.name }}</a> <small><span class="glyphicon glyphicon-calendar"></span>{{ exam.created|timesince }} ago</small></h2>
+                    <br>
+                    <p class="text-justify" >{{ exam.description|truncatechars_html:240}}</p>
+                    <a href="{{ exam.get_absolute_url }}" class="btn btn-primary" role="button">Start Exam</a>
+                    </div>
+                </div>
+                <hr size='1'>
+            </div>
         </div>
-    </div>
-
+    {% endfor %}
+</div>
 {% endblock %}
