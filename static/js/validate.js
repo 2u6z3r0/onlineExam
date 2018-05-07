@@ -71,6 +71,7 @@ $(document).ready(function(){
             $(".option4-place").html(data[j].option4);
             $(".after").hide();
             $(".before").show();
+            $('input[name="group100"]').prop('checked', false);
             j++;
         });
     }

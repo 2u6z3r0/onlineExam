@@ -24,7 +24,6 @@ def exam_page(request, id):
         "question_list" : question_jason,
         "exam_id": id,
     }
-    print(questions)
     return render(request, "exam.html", context)
 
 class QuestionAPIView(generics.ListAPIView):
@@ -38,8 +37,8 @@ class QuestionAPIView(generics.ListAPIView):
         return qs
     
 
-def question_list(request, id):
-    if request.method == 'GET':
-        questions_list = Question.objects.filter(id=1)
-        serializer = QuestionSerialzer(question_list)
-        return JsonResponse(serializer.data)
+# def question_list(request, id):
+#     if request.method == 'GET':
+#         questions_list = Question.objects.filter(id=1)
+#         serializer = QuestionSerialzer(question_list)
+#         return JsonResponse(serializer.data)
