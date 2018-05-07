@@ -1,7 +1,6 @@
 $(document).ready(function(){
     exam_id = $("#data-js").attr("data-js-vars");
-    alert(exam_id)
-            $.get("/api/exam/",function(data,status){
+            $.get("/api/",{"id":exam_id},function(data,status){
                 var i;
             //    alert(data);
                 data2 = [];
@@ -50,9 +49,13 @@ $(document).ready(function(){
         
         $("#after").click(function(){
             // $('input[name=group100]').attr('checked', false);
-            if($("#option-answer").val() == data[j-1].correct_option)
-            alert("selected :"+ $("#option-answer").val() + ', correct :'+data[j-1].correct_option)
+            // alert($('input[name=group100]:checked').val())
+            // alert(data[j-1].correct_option)
+            if($('input[name=group100]:checked').val() == data[j-1].correct_option)
+            {
                 count++;
+                console.log(count)
+            }
             if(j >= data.length)
             {
                 $(".after").hide();
@@ -79,6 +82,6 @@ $(document).ready(function(){
         $("#score").slideDown();
     }
 
-    $(".exit-btn").click(function(){
-        window.location.reload();
+    $("#exit-btn").click(function(){
+        alert('closing the things')
     });

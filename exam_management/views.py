@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import StudentExam, Exam, Question
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from rest_framework import viewsets
+from rest_framework import generics
 from .serializer import QuestionSerialzer
 
 # Create your views here.
@@ -27,10 +27,16 @@ def exam_page(request, id):
     print(questions)
     return render(request, "exam.html", context)
 
-class QuestionViewset(viewsets.ModelViewSet):
-    lookup_field = 'exam_id'
-    queryset = Question.objects.all()
+class QuestionAPIView(generics.ListAPIView):
+    # lookup_field = 'exam_id'
     serializer_class = QuestionSerialzer
+    def get_queryset(self):
+        qs = Question.objects.all()
+        exam_id = self.request.GET.get("id")
+        if exam_id is not None:
+            qs = Question.objects.filter(exam__id=exam_id)
+        return qs
+    
 
 def question_list(request, id):
     if request.method == 'GET':
